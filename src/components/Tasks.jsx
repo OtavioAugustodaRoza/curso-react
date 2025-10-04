@@ -1,19 +1,19 @@
 import { ChevronRightIcon, DeleteIcon } from "lucide-react";
 import { FaTrash } from "react-icons/fa";
-function Tasks(props) {
+function Tasks({tasks, onTaskClick, deleteTask}) {
   return (
     <ul className="space-y-4 p-6 bg-fuchsia-200 rounded-md shadow ">
-      {props.tasks.map((task) => (
+      {tasks.map((task) => (
         <li key={task.id} className="flex gap-2" >
        
-          <button onClick={() => props.onTaskClick(task.id) } className={`bg-slate-400 text-white text-left p-2 rounded-md w-full ${task.iscompleted && "line-through"}`}>{task.title}
+          <button onClick={() => onTaskClick(task.id) } className={`bg-slate-400 text-white text-left p-2 rounded-md w-full transition duration-300 ease-in-out hover:bg-slate-500 ${task.iscompleted && "line-through"}`}>{task.title}
 
 
           </button>
-          <button className="bg-slate-400  p-2 rounded-md text-white">
+          <button className="bg-slate-400  p-2 rounded-md text-white transition duration-300 ease-in-out hover:bg-slate-500">
             <ChevronRightIcon />
           </button>
-          <button className="bg-slate-400  p-2 rounded-md text-white" onClick={() => props.deleteTask(task.id)}>
+          <button className="bg-slate-400  p-2 rounded-md text-white transition duration-300 ease-in-out hover:bg-slate-500" onClick={() => deleteTask(task.id)}>
             <FaTrash />
           </button>
         </li>
