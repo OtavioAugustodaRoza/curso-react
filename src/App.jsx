@@ -24,24 +24,23 @@ function App() {
     },
   ]);
 
-  function deleteTask(taskId){
-    const  newTasks = tasks.filter((task) => task.id !== taskId);
+  function deleteTask(taskId) {
+    const newTasks = tasks.filter((task) => task.id !== taskId);
     setTasks(newTasks);
   }
 
-
   function onTaskClick(taskId) {
     const newTasks = tasks.map((task) => {
-    //preciso atualizar essa tarefa
-    if (task.id === taskId) {
-      return { ...task, iscompleted: !task.iscompleted };
-    }else {
-          //não preciso atualizar essa tarefa
-          return task;
-    }
-  });
+      //preciso atualizar essa tarefa
+      if (task.id === taskId) {
+        return { ...task, iscompleted: !task.iscompleted };
+      } else {
+        //não preciso atualizar essa tarefa
+        return task;
+      }
+    });
     setTasks(newTasks);
-}
+  }
 
   return (
     <div className="w-screen h-screen bg-slate-500 flex justify-center p-6">
@@ -50,7 +49,11 @@ function App() {
           Gerenciador de Tarefas
         </h1>
         <AddTask />
-        <Tasks tasks={tasks}  onTaskClick = {onTaskClick} deleteTask = {deleteTask} />
+        <Tasks
+          tasks={tasks}
+          onTaskClick={onTaskClick}
+          deleteTask={deleteTask}
+        />
       </div>
     </div>
   );
