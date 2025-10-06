@@ -1,6 +1,8 @@
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
 import { useState } from "react";
+import {v4} from "uuid";
+import clsx from "clsx";
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -24,6 +26,7 @@ function App() {
     },
   ]);
 
+ 
   function deleteTask(taskId) {
     const newTasks = tasks.filter((task) => task.id !== taskId);
     setTasks(newTasks);
@@ -40,15 +43,30 @@ function App() {
       }
     });
     setTasks(newTasks);
+
+
+  
+  }
+  
+  function onADDTasksSubmit (newTask) {
+    const newTasks = {
+    id: v4(),
+    title:newTask.title,
+    description:newTask.description,
+    iscompleted:false ,
+  };
+  setTasks([...tasks, newTasks]);
   }
 
   return (
-    <div className="w-screen h-screen bg-slate-500 flex justify-center p-6">
+    <div className={clsx( "bg-slate-500 flex justify-center p-6", tasks.length <= 8 ? "w-screen h-screen": "w-full h-full")} >
       <div className="w-[500px] space-y-4">
-        <h1 className="text-3xl text-slate-100 font-bold text-center">
+        <h1 className={clsx ("text-3xl text-slate-100 font-bold text-center")}>
           Gerenciador de Tarefas
         </h1>
-        <AddTask />
+        <AddTask 
+        onADDTasksSubmit={onADDTasksSubmit}
+        />
         <Tasks
           tasks={tasks}
           onTaskClick={onTaskClick}

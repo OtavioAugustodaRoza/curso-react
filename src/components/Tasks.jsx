@@ -1,8 +1,9 @@
+import clsx from "clsx";
 import { ChevronRightIcon, DeleteIcon } from "lucide-react";
 import { FaTrash } from "react-icons/fa";
 function Tasks({ tasks, onTaskClick, deleteTask }) {
   return (
-    <ul className="space-y-4 p-6 bg-fuchsia-200 rounded-md shadow transition duration-300 ease-in-out hover:transform hover:scale-105">
+    <ul className={clsx (" ", tasks.length > 0 ? "space-y-4 p-6 bg-fuchsia-200 rounded-md shadow transition duration-300 ease-in-out": "" )}>
       {tasks.map((task) => (
         <div className="group">
           <li key={task.id} className="flex gap-2">
