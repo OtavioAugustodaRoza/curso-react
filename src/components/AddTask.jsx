@@ -23,7 +23,7 @@ function AddTask({onADDTasksSubmit}) {
         value={description}
         onChange={(Event) => setDescription(Event.target.value)}
       />
-      <button className="bg-slate-500 text-white px-4 py-2 rounded-md font-medium transition duration-300 ease-in-out hover:bg-slate-600" onClick={() =>{
+      <button className="bg-slate-500 text-white px-4 py-2 rounded-md font-medium cursor-pointer transition duration-300 ease-in-out hover:bg-slate-600" onClick={() =>{
         if(title.trim() === "" || description.trim() === "") {
           alert("Por favor, preencha todos os campos");
           return;
